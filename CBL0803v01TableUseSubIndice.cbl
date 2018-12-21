@@ -7,7 +7,7 @@
       * Tectonics  :
       ******************************************************************
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. QG1CX040.
+       PROGRAM-ID. QG1CX041.
        DATA DIVISION.
        FILE SECTION.
        WORKING-STORAGE SECTION.
@@ -54,4 +54,4 @@
             DISPLAY " WS-TITULO(2,5)    : " WS-TITULO(2,5).
             STOP RUN.
 
-       END PROGRAM QG1CX040.
+       END PROGRAM QG1CX041.

@@ -12,7 +12,7 @@
       *  SET y la opción PERFORM Varying.
       ******************************************************************
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. QG1CX041.
+       PROGRAM-ID. QG1CX042.
        DATA DIVISION.
        FILE SECTION.
        WORKING-STORAGE SECTION.
@@ -58,4 +58,4 @@
        300-MOSTRAR.
            DISPLAY "WS-COLS (" Y, ", ", Z ") = " WS-COLS(Y,Z).
 
-       END PROGRAM QG1CX041.
+       END PROGRAM QG1CX042.
