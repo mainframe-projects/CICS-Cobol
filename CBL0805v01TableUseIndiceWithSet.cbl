@@ -1,15 +1,13 @@
       ******************************************************************
       * Project    : Evaluation COBOL PC
       * Author     : ALDV
-      * Date       : 20/12/2018
-      * Purpose    : Se puede acceder a los elementos individuales de la
-      * tabla utilizando un índice
-      * Un índice es un desplazamiento de elemento desde el inicio de la
-      * tabla.
-      * Un índice se declara con la cláusula Occurs utilizando la
-      *  cláusula INDEXED BY.
-      * El valor del índice se puede cambiar utilizando la instrucción
-      *  SET y la opción PERFORM Varying.
+      * Date       : 26/12/2018
+      * Purpose    : La declaración de set se usa para cambiar el valor
+      *  del índice.
+      * Set verbo se usa para inicializar, incrementar o disminuir el
+      *  valor del índice.
+      * Se utiliza con Buscar y Buscar todos para ubicar elementos en
+      *  la tabla.
       ******************************************************************
        IDENTIFICATION DIVISION.
        PROGRAM-ID. QG1CX043.
@@ -47,7 +45,7 @@
             DISPLAY 'X = ' X
             PERFORM 100-ONE-DIMENSION VARYING X FROM 1 BY 1 UNTIL X > 9
 
-            MOVE '1234567890ABCDEFGHIJKLMN34GHIJKL56MNOPQRALDV15172027'
+            MOVE '1234567890ABCDEFGHIJKLMN34GHIJKL56MNOPQRALDV15172027E'
                TO WS-TABLE
             DISPLAY "NEW WS-TABLE    : " WS-TABLE
             SET Y Z TO 2
@@ -64,6 +62,7 @@
            PERFORM 300-MOSTRAR VARYING Z FROM 1 BY 1 UNTIL Z > 5.
 
        300-MOSTRAR.
+           DISPLAY "WS-ROWS (" Y, " ) =  " WS-ROWS(Y)
            DISPLAY "WS-COLS (" Y, ", ", Z ") = " WS-COLS(Y,Z).
 
        END PROGRAM QG1CX043.
