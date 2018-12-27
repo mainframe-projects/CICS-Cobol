@@ -64,9 +64,6 @@
            02 WK-ABREVIATURA   PIC X(10).
            02 WK-DESCRIPCION   PIC X(50).
 
-       01 WK-MENSAJE           PIC X(63).
-
-
        PROCEDURE DIVISION.
       *************************
        0000-MAIN.

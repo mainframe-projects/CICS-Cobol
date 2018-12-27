@@ -48,7 +48,6 @@
            02 COD-05       PIC X(03).
            02 TXT-05       PIC X(10).
 
-
        WORKING-STORAGE SECTION.
        01 WK-CANAL-UI.
            05 WK-LBL-CODIGO    PIC X(15) VALUE 'CODIGO : '.
@@ -71,7 +70,8 @@
             PERFORM 4000-FINAL.
       *
        1000-INICIO.
-            DISPLAY "DECLARACION DE ACCESO ALEATORIO".
+            MOVE "DECLARACION DE ACCESO ALEATORIO" TO WK-MENSAJE
+            DISPLAY WK-MENSAJE.
 
        4000-FINAL.
            STOP RUN.
