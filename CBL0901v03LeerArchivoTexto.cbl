@@ -1,8 +1,9 @@
       ******************************************************************
       * Project    : Evaluation COBOL PC
       * Author     : ALDV
-      * Date       : 27/12/2018
-      * Purpose    : Leer el archivo de texto s.
+      * Date       : 02/01/2018
+      * Purpose    : Leer el archivo de texto, este se debe ubicar
+      * donde se ubica el archivo ejecutable del programa.
       ******************************************************************
        IDENTIFICATION DIVISION.
       *************************
