@@ -2,7 +2,8 @@
       * Project    : Evaluation COBOL PC
       * Author     : ALDV
       * Date       : 03/01/2018
-      * Purpose    :
+      * Purpose    : Es fundamental que el archivo a leer se encuentre
+      * en el formato indexed.
       ******************************************************************
        IDENTIFICATION DIVISION.
       *************************
@@ -16,7 +17,8 @@
 
        INPUT-OUTPUT SECTION.
        FILE-CONTROL.
-           SELECT HOST004 ASSIGN TO "QG1CX051.txt"
+           SELECT HOST004 ASSIGN
+                          TO "F:\BBVA04COBOL\03Desarrollo\QG1CX051.DAT"
            ORGANIZATION IS INDEXED
            ACCESS MODE IS RANDOM
            RECORD KEY COD-CANAL
@@ -55,7 +57,7 @@
             DISPLAY 'PROCESO'
             OPEN INPUT HOST004
             DISPLAY 'ABRIR HOST004'
-            MOVE '010' TO COD-CANAL
+            MOVE '004' TO COD-CANAL
             DISPLAY 'COD-CANAL :' COD-CANAL
             READ HOST004 RECORD INTO WK-CANAL
                KEY IS COD-CANAL
