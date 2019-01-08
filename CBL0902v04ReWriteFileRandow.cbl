@@ -1,13 +1,19 @@
       ******************************************************************
       * Project    : Evaluation COBOL PC
       * Author     : ALDV
-      * Date       : 03/01/2018
-      * Purpose    : Es fundamental que el archivo a leer se encuentre
-      * en el formato indexed.
+      * Date       : 08/01/2018
+      * Purpose    : Regrabar los datos en un archivo aleatorio
+      * Se utiliza para actualizar los registros. El archivo debe
+      * abrirse en modo IO para operaciones de reescritura.
+      * Solo se puede utilizar después de una operación de lectura
+      * exitosa.
+      *  Reescribir el verbo sobreescribe el último registro leído.
+      * Observar la declaración del SELECT
+      * Obtener una copia archivo QG1CX053.DAT por QG1CX054.DAT
       ******************************************************************
        IDENTIFICATION DIVISION.
       *************************
-       PROGRAM-ID. QG1CX051.
+       PROGRAM-ID. QG1CX054.
       *
        ENVIRONMENT DIVISION.
       *************************
@@ -21,11 +27,10 @@
                           TO "F:\BBVA04COBOL\03Desarrollo\QG1CX054.DAT"
            ORGANIZATION IS INDEXED
            ACCESS MODE IS RANDOM
-           RECORD KEY COD-CANAL
-           FILE STATUS IS FS-HOST.
+           RECORD KEY COD-CANAL OF REG-HOST004.
+      *     FILE STATUS IS FS-HOST.
 
        DATA DIVISION.
-      *************************
        FILE SECTION.
        FD  HOST004.
        01  REG-HOST004.
@@ -41,7 +46,6 @@
 
        02 WK-MENSAJE           PIC X(63).
        02 FS-HOST              PIC X(02).
-
        PROCEDURE DIVISION.
       *************************
        0000-MAIN.
@@ -50,23 +54,35 @@
             PERFORM 4000-FINAL.
       *
        1000-INICIO.
-            MOVE "ORGANIZATION INDEXED FOR ACCESS RANDOM" TO WK-MENSAJE
+            MOVE "REWRITE INDEXED FOR ACCESS RANDOM" TO WK-MENSAJE
             DISPLAY WK-MENSAJE.
       *
        2000-PROCESO.
             DISPLAY 'PROCESO'
-            OPEN INPUT HOST004
-            DISPLAY 'ABRIR HOST004'
-            MOVE '022' TO COD-CANAL
-            DISPLAY 'COD-CANAL :' COD-CANAL
-            READ HOST004 RECORD INTO WK-CANAL
+            MOVE '022' TO WK-CODIGO
+            MOVE 'ILI X' TO WK-ABREVIATURA
+            MOVE 'ILI FINANTIAL XXSS' TO WK-DESCRIPCION
+            DISPLAY WK-CANAL
+
+            OPEN I-O HOST004
+            MOVE WK-CANAL TO REG-HOST004
+
+            READ HOST004
                KEY IS COD-CANAL
-               INVALID KEY DISPLAY 'INVALID KEY'
-               NOT INVALID KEY DISPLAY WK-CANAL
+               INVALID KEY DISPLAY "KEY NO EXISTE"
             END-READ.
+
+            DISPLAY REG-HOST004
+            DISPLAY "Codigo canal : " COD-CANAL
+            DISPLAY "Abreviatura  : " TXT-ABRV
+            DISPLAY "Descripción  : " TXT-NOM
+
+            REWRITE REG-HOST004
+               INVALID KEY DISPLAY "INVALID KEY"
+               NOT INVALID KEY DISPLAY "REGISTRO DE CANAL"
+            END-REWRITE.
             CLOSE HOST004.
       *
        4000-FINAL.
            STOP RUN.
-
-       END PROGRAM QG1CX051.
+       END PROGRAM QG1CX054.
